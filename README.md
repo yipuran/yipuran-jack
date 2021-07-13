@@ -33,7 +33,7 @@ repositories {
 }
 
 dependencied {
-    compile 'org.yipuran.core:yipuran-core:1.0'
+    compile 'org.yipuran.core:yipuran-jack:1.0'
 }
 ```
 
