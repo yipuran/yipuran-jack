@@ -1,6 +1,8 @@
 # yipuran-jack
 Jackson Java JSON-processorを使用する時の補助を目的したライブラリ
 
+## 変更履歴
+1.1 JsonClip を追加
 
 ## Document
 [Wiki Page](../../wiki)
