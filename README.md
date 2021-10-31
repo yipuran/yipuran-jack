@@ -18,7 +18,7 @@ Jackson Java JSON-processorを使用する時の補助を目的したライブ�
     <dependency>
         <groupId>org.yipuran.json</groupId>
         <artifactId>yipuran-jack</artifactId>
-        <version>1.0</version>
+        <version>1.1</version>
     </dependency>
 </dependencies>
 
@@ -33,7 +33,7 @@ repositories {
 }
 
 dependencied {
-    compile 'org.yipuran.json:yipuran-jack:1.0'
+    compile 'org.yipuran.json:yipuran-jack:1.1'
 }
 ```
 
