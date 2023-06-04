@@ -270,9 +270,9 @@ public class JsonNodeParse{
 	 * @return Entry＜String, JsonNode＞ の Stream
 	 */
 	public Stream<Entry<String, JsonNode>> nodeStream(JsonNode node){
-		Stream.Builder<Entry<String, JsonNode>> builder = Stream.builder();
-		nodeJson(node, "", builder);
-		return  builder.build();
+		Map<String, JsonNode> map = new HashMap<>();
+		nodeJson(node, "", map);
+		return map.entrySet().stream();
 	}
 	/**
 	 * JSON文字列→読込Entry のStream生成.
@@ -306,21 +306,25 @@ public class JsonNodeParse{
 		}
 		return  builder.build();
 	}
-	private void nodeJson(JsonNode node, String path, Stream.Builder<Entry<String, JsonNode>> builder){
-		if(node.getNodeType().equals(JsonNodeType.OBJECT)) {
+	private void nodeJson(JsonNode node, String path, Map<String, JsonNode> map) {
+		if (node.getNodeType().equals(JsonNodeType.OBJECT)) {
 			for(Iterator<Entry<String, JsonNode>> it=node.fields(); it.hasNext();) {
 				Entry<String, JsonNode> entry = it.next();
 				String _path = path + "." + entry.getKey();
-				builder.add(new SimpleEntry<String, JsonNode>(_path.substring(1), node));
-				nodeJson(entry.getValue(), path + "." + entry.getKey(), builder);
+				map.put(_path.substring(1), node);
+				nodeJson(entry.getValue(), path + "." + entry.getKey(), map);
 			}
 		}else if(node.getNodeType().equals(JsonNodeType.ARRAY)){
 			if (node.size() > 0){
 				int x=0;
 				for(Iterator<JsonNode> it=node.iterator(); it.hasNext();x++){
-					nodeJson(it.next(), path + "[" + x + "]", builder);
+					nodeJson(it.next(), path + "[" + x + "]", map);
 				}
 			}
+		}else if(node.getNodeType().equals(JsonNodeType.NULL)){
+			map.put(path.substring(1), null);
+		}else{
+			map.put(path.substring(1), node);
 		}
 	}
 }
