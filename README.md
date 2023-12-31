@@ -9,7 +9,7 @@ Jackson Java JSON-processorを使用する時の補助を目的したライブ�
 ```
 <repositories>
    <repository>
-      <id>yipuran-core</id>
+      <id>yipuran-jack</id>
       <url>https://raw.github.com/yipuran/yipuran-jack/mvn-repo</url>
    </repository>
 </repositories>
